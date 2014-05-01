@@ -18,10 +18,13 @@ GEM
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
     mime-types (1.25.1)
+    mini_portile (0.5.3)
     minitest (4.7.5)
     moped (1.5.2)
     multi_json (1.9.3)
     multipart-post (2.0.0)
+    nokogiri (1.6.1)
+      mini_portile (~> 0.5.0)
     oj (2.8.1)
     polyglot (0.3.4)
     pupa (0.0.13)
@@ -42,4 +45,5 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  nokogiri
   pupa
