@@ -1,27 +1,18 @@
+#$LOAD_PATH.unshift(File.join(File.dirname(__FILE__), '..', 'models'))
+$LOAD_PATH.unshift(File.dirname(__FILE__))
+
 require 'rubygems'
 require 'bundler/setup'
 
 require 'pupa'
 require 'nokogiri'
 
-class Resolution
-
-  include Pupa::Model
-
-  attr_accessor :beschlussnr, :url, :betreff, :datum, :dsnr, :termin, :stand
-  dump          :beschlussnr, :url, :betreff, :datum, :dsnr, :termin, :stand
-
-  def to_s
-    beschlussnr
-  end
-
-end
-
+require 'models/resolution'
 
 class ResolutionProcessor < Pupa::Processor
 
   def scrape_objects
-    page = get('http://notes.leipzig.de/APPL/LAURA/WP5/kais02.nsf/WEBBeschlussAusw2?OpenView&RestrictToCategory=2014-----alleEinreicher')
+    page = get('http://notes.leipzig.de/APPL/LAURA/WP5/kais02.nsf/WEBBeschlussAusw2?OpenView&RestrictToCategory=2013-----alleEinreicher')
 
     page.search('//form/table/tr[@valign="top"]').each do |row|
 
