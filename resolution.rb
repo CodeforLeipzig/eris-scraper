@@ -18,7 +18,7 @@ class Resolution
 end
 
 
-class ResolutionProcessor
+class ResolutionProcessor < Pupa::Processor
 
   def scrape_objects
     page = get('http://notes.leipzig.de/APPL/LAURA/WP5/kais02.nsf/WEBBeschlussAusw2?OpenView&RestrictToCategory=2014-----alleEinreicher')
@@ -65,7 +65,7 @@ class ResolutionProcessor
 end
 
 
-ResolutionProcessor.add_scraping_task(objects)
+ResolutionProcessor.add_scraping_task(:objects)
 
 runner = Pupa::Runner.new(ResolutionProcessor)
 runner.run(ARGV)
