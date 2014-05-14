@@ -14,21 +14,21 @@ resolutions, or decisions). It uses the [pupa-ruby](https://github.com/opennorth
 
 Install gems:
 
-  bundle install
+    bundle install
 
 Install mongodb and start it; f.e. for OS X:
 
-  brew install mongodb
-  mongod
+    brew install mongodb
+    mongod
 
 Run the scraper like this:
 
-  ruby resolution.rb -d eris-dev
+    ruby resolution.rb -d eris-dev
 
 You can then inspect the data in the database, f.e. in the browser using genghisapp:
 
-  gem install genghisapp
-  genghisapp -F
+    gem install genghisapp
+    genghisapp -F
 
 The raw data is also stored as JSON files in './scraped_data' for
 inspection.
