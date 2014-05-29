@@ -3,7 +3,7 @@ require './application'
 class ResolutionProcessor < Pupa::Processor
 
   def scrape_objects
-    page = get('http://notes.leipzig.de/APPL/LAURA/WP5/kais02.nsf/WEBBeschlussAusw2?OpenView&RestrictToCategory=2013-----alleEinreicher')
+    page = get('http://notes.leipzig.de/APPL/LAURA/WP5/kais02.nsf/WEBBeschlussAusw2?OpenView&RestrictToCategory=alleJahre-----alleEinreicher')
 
     page.search('//form/table/tr[@valign="top"]').each do |row|
 
