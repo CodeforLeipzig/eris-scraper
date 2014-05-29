@@ -23,7 +23,7 @@ Install mongodb and start it; f.e. for OS X:
 
 Run the scraper like this:
 
-    ruby resolution.rb -d eris-dev
+    ruby resolution.rb -d eris-dev --database_url mongodb://localhost:27017/eris
 
 You can then inspect the data in the database, f.e. in the browser using genghisapp:
 
