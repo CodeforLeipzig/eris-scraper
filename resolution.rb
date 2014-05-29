@@ -8,22 +8,26 @@ class ResolutionProcessor < Pupa::Processor
     page.search('//form/table/tr[@valign="top"]').each do |row|
 
       beschlussnr = row.at('./td[1]').content rescue ''
-      url         = row.at('./td[1]//a[1]')['href']
+      url         = build_url(row.at('./td[1]//a[1]')['href'])
       betreff     = row.at('./td[3]').content rescue ''
       datum       = row.at('./td[4]').content rescue ''
       dsnr        = row.at('./td[5]').content rescue ''
       termin      = row.at('./td[6]').content rescue ''
-      stand       = row.at('./td[9]').content rescue ''
 
       resolution = Resolution.new({
         beschlussnr: beschlussnr,
-        url:         build_url(url),
+        url:         url,
         betreff:     betreff,
         datum:       parse_date(datum),
         dsnr:        dsnr,
-        termin:      parse_date(termin),
-        stand:       stand
+        termin:      parse_date(termin)
       })
+
+      doc = get url
+      resolution.stand = doc.css('tr:contains("Beschlussstatus") td:nth-child(2)').text
+      resolution.stand = doc.css('tr:contains("Beschlussstatus") td:nth-child(2)').text
+      resolution.text = doc.css('table:contains("Beschlusstext") ~ table:first').text
+      resolution.einreicher = doc.css('td:contains("Einreicher:") ~ td:first').text
 
       dispatch(resolution)
     end

@@ -2,8 +2,9 @@ class Resolution
 
   include Pupa::Model
 
-  attr_accessor :beschlussnr, :url, :betreff, :datum, :dsnr, :termin, :stand
-  dump          :beschlussnr, :url, :betreff, :datum, :dsnr, :termin, :stand
+  attributes = [:beschlussnr, :url, :betreff, :einreicher, :datum, :dsnr, :termin, :stand, :text]
+  attr_accessor *attributes
+  dump *attributes
 
   def to_s
     beschlussnr
