@@ -17,6 +17,7 @@ GEM
       faraday (>= 0.7.4, < 0.10)
     i18n (0.6.9)
     json-schema (2.1.9)
+    libv8 (3.16.14.3)
     mail (2.5.4)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
@@ -50,8 +51,12 @@ GEM
       oj (~> 2.1)
       pg (~> 0.17.0)
       sequel (~> 4.10.0)
+    ref (1.0.5)
     sequel (4.10.0)
     slop (3.5.0)
+    therubyracer (0.12.1)
+      libv8 (~> 3.16.14.0)
+      ref
     thread_safe (0.3.3)
     treetop (1.4.15)
       polyglot
@@ -65,3 +70,4 @@ DEPENDENCIES
   nokogiri
   pry
   pupa
+  therubyracer

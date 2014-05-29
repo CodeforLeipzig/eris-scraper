@@ -29,12 +29,27 @@ class ResolutionProcessor < Pupa::Processor
       resolution.text = doc.css('table:contains("Beschlusstext") ~ table:first').text
       resolution.einreicher = doc.css('td:contains("Einreicher:") ~ td:first').text
 
+      resolution.anlagen_text = doc.css('table:contains("Download") ~ table:first font').text
+      script = doc.css('table:contains("Download") ~ table:first script').text
+      if pdf_urls = extract_js_array(:URL, script)
+        resolution.anlagen_urls = pdf_urls
+      end
+
       dispatch(resolution)
     end
 
   end
 
   private
+
+  require 'v8'
+  def extract_js_array(name, js_source)
+    context_shim = "document = { write: function() {} };"
+    js = V8::Context.new
+    js.eval(context_shim)
+    js.eval(js_source)
+    js[name].to_a
+  end
 
   def build_url(url)
     ["http://notes.leipzig.de", url].join("")
