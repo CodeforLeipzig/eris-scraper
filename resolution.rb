@@ -68,7 +68,7 @@ end
 
 ResolutionProcessor.add_scraping_task(:objects)
 
-runner = Pupa::Runner.new(ResolutionProcessor)
+runner = Pupa::Runner.new(ResolutionProcessor, expires_in: 7.days.to_i)
 runner.run(ARGV)
 
 
