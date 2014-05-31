@@ -31,16 +31,40 @@ class ResolutionProcessor < Pupa::Processor
 
       resolution.anlagen_text = doc.css('table:contains("Download") ~ table:first td:first').text
       script = doc.css('table:contains("Download") ~ table:first script').text
-      if pdf_urls = extract_js_array(:URL, script)
-        resolution.anlagen_urls = pdf_urls
-      end
+
+      pdf_urls = extract_js_array(:URL, script).map! { |path| build_url(path.strip!) if path }
+      resolution.anlagen_urls = pdf_urls if pdf_urls.present?
 
       dispatch(resolution)
-    end
 
+      download_attachments! resolution.anlagen_urls
+    end
+  end
+
+  # Download the attachment to the filesystem and cache it forever.
+  def download_attachments!(urls)
+    return if urls.blank?
+    begin
+      # Send HTTP requests in parallel. – See Pupa's README to learn more.
+      attachment_downloader.in_parallel(attachment_download_manager) do
+        urls.each do |url|
+          attachment_downloader.get(url)
+        end
+      end
+    rescue Faraday::Error::ClientError => e
+      error(e.response.inspect)
+    end
   end
 
   private
+
+  def attachment_download_manager
+    @attachment_download_manager ||= Typhoeus::Hydra.new(max_concurrency: 20)
+  end
+
+  def attachment_downloader
+    @attachment_downloader ||= Pupa::Processor::Client.new(cache_dir: File.expand_path('attachments', Dir.pwd), expires_in: nil)
+  end
 
   require 'v8'
   def extract_js_array(name, js_source)

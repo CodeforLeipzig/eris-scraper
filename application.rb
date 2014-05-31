@@ -5,6 +5,8 @@ require 'rubygems'
 require 'bundler/setup'
 
 require 'pupa'
+require 'typhoeus'
+require 'typhoeus/adapters/faraday'
 require 'nokogiri'
 
 # Use Addressable::URI to handle URIs with umlauts
