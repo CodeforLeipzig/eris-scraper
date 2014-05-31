@@ -7,5 +7,9 @@ require 'bundler/setup'
 require 'pupa'
 require 'nokogiri'
 
+# Use Addressable::URI to handle URIs with umlauts
+require 'addressable/uri'
+Faraday::Utils.default_uri_parser = Addressable::URI.method(:parse)
+
 require 'models/resolution'
 
