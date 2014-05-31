@@ -29,7 +29,7 @@ class ResolutionProcessor < Pupa::Processor
       resolution.text = doc.css('table:contains("Beschlusstext") ~ table:first').text
       resolution.einreicher = doc.css('td:contains("Einreicher:") ~ td:first').text
 
-      resolution.anlagen_text = doc.css('table:contains("Download") ~ table:first font').text
+      resolution.anlagen_text = doc.css('table:contains("Download") ~ table:first td:first').text
       script = doc.css('table:contains("Download") ~ table:first script').text
       if pdf_urls = extract_js_array(:URL, script)
         resolution.anlagen_urls = pdf_urls
