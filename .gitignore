@@ -37,3 +37,4 @@ build/
 /output/
 /web_cache/
 /scraped_data/
+attachments/*
