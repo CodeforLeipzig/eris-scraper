@@ -10,5 +10,10 @@ class Resolution
     beschlussnr
   end
 
+  # use for serialization to Elasticsearch::Persistence
+  def to_hash
+    to_h
+  end
+
 end
 
