@@ -37,7 +37,7 @@ class ResolutionProcessor < Pupa::Processor
 
       dispatch(resolution)
 
-      download_attachments! resolution.anlagen_urls
+      #download_attachments! resolution.anlagen_urls
     end
   end
 
