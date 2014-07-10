@@ -51,3 +51,6 @@ puts "Connection to ES established" if @repository.client.ping
 # => true
 #
 
+
+## import into ES # TODO LHM 
+# @store.entries.each {|name| reso = Resolution.new(@store.read(name)); @repository.save(reso); }
