@@ -1,4 +1,4 @@
-require './application'
+
 
 class ResolutionProcessor < Pupa::Processor
 

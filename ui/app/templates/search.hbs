@@ -1,0 +1,30 @@
+<form {{action 'search' on='submit'}}>
+  {{input value=searchTerm type='search' placeholder='Search…'}}
+</form>
+
+{{#if hits.total}}
+  Treffer total: {{hits.total}}
+  <ul>
+    {{#each hits.hits}}
+      {{#with _source}}
+        <li>
+          <div>
+            <div>
+              <a {{unbound url}}>
+                Betreff: {{betreff}}
+              </a>
+            </div>
+            <div>Datum: {{datum}}</div>
+            <div>DSNR: {{dsnr}}</div>
+            <div>Stand: {{stand}}</div>
+            <div>Text: {{text}}</div>
+          </div>
+        </li>
+      {{/with}}
+    {{/each}}
+  </ul>
+{{else}}
+  {{#if q}}
+    Keine Treffer
+  {{/if}}
+{{/if}}

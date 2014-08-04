@@ -41,6 +41,9 @@ inspection.
 - Open GUI `http://127.0.0.1:9200/_plugin/gui/index.html`
 - Import data: `bundle exec ruby ./elasticsearch-import.rb`
 
+## UI
+See `ui/README.md` for how to build/show the UI.
+
 ## TODOS / Ideas
 
 * Add an elasticsearch storage backend to pupa-ruby as an alternative to mongodb

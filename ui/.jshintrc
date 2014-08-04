@@ -2,7 +2,8 @@
   "predef": {
     "document": true,
     "window": true,
-    "ErisENV": true
+    "ErisENV": true,
+    "elasticsearch": true
   },
   "browser" : true,
   "boss" : true,
