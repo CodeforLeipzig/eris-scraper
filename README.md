@@ -10,7 +10,8 @@ resolutions, or decisions). It uses the [pupa-ruby](https://github.com/opennorth
 * mongodb
 * [genghisapp](http://genghisapp.com/) (a mongodb gui; optional)
 
-## Getting started
+## How to stuff
+### 1. Download data
 
 Install gems:
 
@@ -32,6 +33,13 @@ You can then inspect the data in the database, f.e. in the browser using genghis
 
 The raw data is also stored as JSON files in './scraped_data' for
 inspection.
+
+### 2. Import data into Elasticsearch
+- Install Elasticsearch `brew  install elasticsearch`
+- Start Elasticsearch `elasticsearch`
+- Install Elasticsearch GUI: `plugin --install jettro/elasticsearch-gui`
+- Open GUI `http://127.0.0.1:9200/_plugin/gui/index.html`
+- Import data: `bundle exec ruby ./elasticsearch-import.rb`
 
 ## TODOS / Ideas
 
