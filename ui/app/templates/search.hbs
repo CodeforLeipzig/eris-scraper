@@ -6,21 +6,22 @@
   Treffer total: {{hits.total}}
   <ul>
     {{#each hits.hits}}
-      {{#with _source}}
         <li>
           <div>
             <div>
-              <a {{unbound url}}>
-                Betreff: {{betreff}}
+              <a href='{{unbound _source.url}}' target='_blank'>
+                Betreff: {{_source.betreff}}
               </a>
+              <span>&nbsp;(Score: {{_score}})</span>
             </div>
-            <div>Datum: {{datum}}</div>
-            <div>DSNR: {{dsnr}}</div>
-            <div>Stand: {{stand}}</div>
-            <div>Text: {{text}}</div>
+            {{#with _source}}
+              <div>Datum: {{datum}}</div>
+              <div>DSNR: {{dsnr}}</div>
+              <div>Stand: {{stand}}</div>
+              <div>Text: {{text}}</div>
+            {{/with}}
           </div>
         </li>
-      {{/with}}
     {{/each}}
   </ul>
 {{else}}
