@@ -7,45 +7,54 @@ resolutions, or decisions). It uses the [pupa-ruby](https://github.com/opennorth
 
 * ruby (>= 2.1 tested)
 * bundler
-* mongodb
-* [genghisapp](http://genghisapp.com/) (a mongodb gui; optional)
 
 ## How to stuff
+
+### 0. Install dependencies
+
+- Install ruby
+- Install bundler ('gem install bundler')
+
+- Install Elasticsearch: `brew  install elasticsearch`
+- Start Elasticsearch: `elasticsearch`
+- (Optional) Install Elasticsearch GUI: `plugin --install jettro/elasticsearch-gui`
+
 ### 1. Download data
 
 Install gems:
 
     bundle install
 
-Install mongodb and start it; f.e. for OS X:
-
-    brew install mongodb
-    mongod
-
 Run the scraper like this:
 
-    ruby resolution.rb -d eris-dev --database_url mongodb://localhost:27017/eris
+    bin/scrape
 
-You can then inspect the data in the database, f.e. in the browser using genghisapp:
-
-    gem install genghisapp
-    genghisapp -F
-
-The raw data is also stored as JSON files in './scraped_data' for
-inspection.
+This will download a lot of JSON files into the scraper/output
+directory.
 
 ### 2. Import data into Elasticsearch
-- Install Elasticsearch `brew  install elasticsearch`
-- Start Elasticsearch `elasticsearch`
-- Install Elasticsearch GUI: `plugin --install jettro/elasticsearch-gui`
-- Open GUI `http://127.0.0.1:9200/_plugin/gui/index.html`
-- Import data: `bundle exec ruby ./elasticsearch-import.rb`
+
+Import the JSON files from the step before into Elasticsearch:
+
+  bin/elasticsearch-import
+
+### 3. Enrich the data with metadata
+
+Run the tagger with the default settings:
+
+  bin/tagger
+
+You can specify a specific dictionary to use for the tagger:
+
+  bin/tagger --dictionary=streets
+
+This will add the found named entities to the resolution in elasticsearch.
 
 ## UI
 See `ui/README.md` for how to build/show the UI.
 
 ## TODOS / Ideas
 
-* Add an elasticsearch storage backend to pupa-ruby as an alternative to mongodb
 * Scrape other content, i.e. minutes, agendas etc
 * Align naming and data structures with the emerging [OParl](http://oparl.org/) standard
+* build the scripts above (this is vaporware!!)
