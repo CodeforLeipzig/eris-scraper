@@ -34,7 +34,7 @@ build/
 .rvmrc
 
 # ignore output and cache dirs
-/output/
-/web_cache/
-/scraped_data/
-attachments/*
+scraper/output/
+scraper/web_cache/
+scraper/scraped_data/
+scraper/attachments/*
