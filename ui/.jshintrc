@@ -1,10 +1,10 @@
 {
-  "predef": {
-    "document": true,
-    "window": true,
-    "ErisENV": true,
-    "elasticsearch": true
-  },
+  "predef": [
+    "elasticsearch",
+    "document",
+    "window",
+    "-Promise"
+  ],
   "browser" : true,
   "boss" : true,
   "curly": true,

@@ -2,6 +2,7 @@
 
 module.exports = function(environment) {
   var ENV = {
+    modulePrefix: 'eris',
     environment: environment,
     baseURL: '/',
     locationType: 'auto',
@@ -9,7 +10,6 @@ module.exports = function(environment) {
       FEATURES: {
         // Here you can enable experimental features on an ember canary build
         // e.g. 'with-controller': true
-        'query-params-new': true
       }
     },
 
@@ -28,7 +28,15 @@ module.exports = function(environment) {
   }
 
   if (environment === 'test') {
+    // Testem prefers this...
+    ENV.baseURL = '/';
+    ENV.locationType = 'auto';
 
+    // keep test console output quieter
+    ENV.APP.LOG_ACTIVE_GENERATION = false;
+    ENV.APP.LOG_VIEW_LOOKUPS = false;
+
+    ENV.APP.rootElement = '#ember-testing';
   }
 
   if (environment === 'production') {
