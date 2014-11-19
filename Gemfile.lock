@@ -116,7 +116,9 @@ PLATFORMS
 DEPENDENCIES
   addressable
   ahocorasick
+  elasticsearch
   elasticsearch-persistence
+  hashie
   nokogiri
   pry
   pupa
